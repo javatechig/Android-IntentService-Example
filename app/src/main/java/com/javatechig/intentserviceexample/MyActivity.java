@@ -36,12 +36,13 @@ public class MyActivity extends Activity implements DownloadResultReceiver.Recei
         mReceiver = new DownloadResultReceiver(new Handler());
         mReceiver.setReceiver(this);
         Intent intent = new Intent(Intent.ACTION_SYNC, null, this, DownloadService.class);
+     //make an intent named as 'intent'
 
         /* Send optional extras to Download IntentService */
-        intent.putExtra("url", url);
+        intent.putExtra("url", url);//to which we want to jump 
         intent.putExtra("receiver", mReceiver);
         intent.putExtra("requestId", 101);
-
+//start intent services
         startService(intent);
     }
 
@@ -59,7 +60,7 @@ public class MyActivity extends Activity implements DownloadResultReceiver.Recei
 
                 String[] results = resultData.getStringArray("result");
 
-                /* Update ListView with result */
+                /* Update ListView with result in ArrayAdapter*/
                 arrayAdapter = new ArrayAdapter(MyActivity.this, android.R.layout.simple_list_item_2, results);
                 listView.setAdapter(arrayAdapter);
 
